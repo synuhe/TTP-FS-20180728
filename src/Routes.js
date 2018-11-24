@@ -3,10 +3,11 @@ import { Switch, Route } from "react-router-dom";
 import Homepage from "./Components/Homepage";
 import Login from "./Components/Login";
 import Signup from "./Components/Signup";
-import Profile from "./Components/Profile";
+import Portfolio from "./Components/Portfolio";
+import TransactionSummary from "./Components/TransactionSummary";
 
 const Routes = props => {
-  const isLoggedIn = true;
+  const isLoggedIn = props.user;
   return (
     <div>
       <Switch>
@@ -19,7 +20,8 @@ const Routes = props => {
         {/* Routes that only logged in users can access */}
         {isLoggedIn && (
           <Switch>
-            <Route path="/profile" component={Profile} />
+            <Route path="/portfolio" component={Portfolio} />
+            <Route path="/transactions" component={TransactionSummary} />
           </Switch>
         )}
       </Switch>
