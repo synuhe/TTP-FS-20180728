@@ -54,7 +54,7 @@ class Navbar extends Component {
                 color="inherit"
                 className={classes.logo}
               >
-                stocks
+                $tocks
               </Typography>
             </Button>
             <Typography
@@ -64,11 +64,11 @@ class Navbar extends Component {
             />
             {this.props.user ? (
               <div>
-                <Button color="inherit" onClick={this.transactions}>
-                  Transaction History
-                </Button>
                 <Button color="inherit" onClick={this.handleLogout}>
                   Logout
+                </Button>
+                <Button color="inherit" onClick={this.transactions}>
+                  Transaction History
                 </Button>
                 <IconButton className={classes.menuButton} color="inherit">
                   <Work onClick={this.portfolioPush} />
@@ -80,7 +80,7 @@ class Navbar extends Component {
                   Login
                 </Button>
                 <Button color="inherit" onClick={this.signupPush}>
-                  Signup
+                  Sign Up
                 </Button>
               </div>
             )}
