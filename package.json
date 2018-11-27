@@ -15,14 +15,17 @@
     "react-dom": "^16.6.3",
     "react-router-dom": "^4.3.1",
     "react-scripts": "2.1.1",
-    "sequelize": "^4.41.2"
+    "sequelize": "^4.41.2",
+    "volleyball": "^1.5.1"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
+    "startServer": "NODE_ENV='DEV' node main",
     "eject": "react-scripts eject"
   },
+  "proxy": "http://localhost:1337",
   "eslintConfig": {
     "extends": "react-app"
   },
