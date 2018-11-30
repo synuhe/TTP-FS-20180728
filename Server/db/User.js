@@ -25,12 +25,13 @@ const User = db.define("user", {
     }
   },
   money: {
-    type: Sequelize.DECIMAL(10, 2)
+    type: Sequelize.DECIMAL(10, 2),
+    defaultValue: 5000.0
   }
 });
 
 User.beforeCreate((user, options) => {
-  if (user.money === null) {
+  if (user.money === "") {
     user.money = 5000.0;
   }
 });

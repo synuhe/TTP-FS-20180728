@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import Axios from "axios";
 import PropTypes from "prop-types";
 import { withStyles } from "@material-ui/core/styles";
 import { TextField, FormControl, Button } from "@material-ui/core";
@@ -9,21 +10,54 @@ class Signup extends Component {
   constructor() {
     super();
     this.state = {
-      username: "",
+      name: "",
       email: "",
-      password: ""
+      password: "",
+      users: []
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSignup = this.handleSignup.bind(this);
+  }
+
+  async componentDidMount() {
+    try {
+      const response = await Axios.get("/api/users");
+      const users = response.data;
+      const arr = [];
+      users.forEach(el => arr.push(el.email));
+      this.setState({
+        users: arr
+      });
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
+    let data = this.state.email;
+    if (this.state.users.filter(el => el === data).length > 1) {
+      alert("user email already exists, redirecting to login page");
+      this.props.history.push("/login");
+    }
   }
 
-  handleSignup() {}
+  async handleSignup(event) {
+    event.preventDefault();
+    try {
+      let data = {
+        name: this.state.name,
+        email: this.state.email,
+        password: this.state.password
+      };
+      await Axios.post("/api/users", data);
+      this.props.history.push("/portfolio");
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   render() {
     const { classes } = this.props;
@@ -31,11 +65,11 @@ class Signup extends Component {
       <MaterialUIForm onSubmit={this.handleLogin} className={classes.container}>
         <FormControl className={classes.margin}>
           <TextField
-            id="username-input"
-            name="username"
-            label="Name"
+            id="name-input"
+            name="name"
+            label="name"
             className={classes.textField}
-            type="username"
+            type="name"
             margin="normal"
             required
             onChange={this.handleChange}
@@ -45,7 +79,7 @@ class Signup extends Component {
           <TextField
             id="email-input"
             name="email"
-            label="Email"
+            label="email"
             className={classes.textField}
             type="email"
             margin="normal"
@@ -57,7 +91,7 @@ class Signup extends Component {
         <FormControl className={classes.margin}>
           <TextField
             id="password-input"
-            label="Password"
+            label="password"
             name="password"
             className={classes.textField}
             onChange={this.handleChange}

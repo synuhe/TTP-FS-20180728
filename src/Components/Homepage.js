@@ -50,7 +50,7 @@ class Homepage extends Component {
               $tocks
               <br />
               <br />
-              <i>TTP-FS-20180728 Synuhe Uribe Assessment</i>
+              <i>$tocks is an online stock exchange and portfolio simulator</i>
               <br />
               <br />
               Sign up now to get started using $tocks

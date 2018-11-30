@@ -1,9 +1,9 @@
 const router = require("express").Router();
 const { Shares } = require("../db/index");
 
-router.get("/users/:name", async (req, res, next) => {
+router.get("/users/:email", async (req, res, next) => {
   try {
-    const user = req.params.name;
+    const user = req.params.email;
     const data = await Shares.findByUser(user);
     res.send(data);
   } catch (err) {
