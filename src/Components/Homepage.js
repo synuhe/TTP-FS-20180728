@@ -36,7 +36,7 @@ class Homepage extends Component {
   };
 
   signupPush = () => {
-    this.props.history.push("/singup");
+    this.props.history.push("/signup");
   };
 
   render() {

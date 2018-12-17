@@ -19,7 +19,7 @@ class Navbar extends Component {
   }
 
   handleLogout = () => {
-    this.props.push("/");
+    this.props.history.push("/");
   };
 
   loginPush = () => {
@@ -62,7 +62,7 @@ class Navbar extends Component {
               color="inherit"
               className={classes.flex}
             />
-            {this.props.user ? (
+            {!this.props.user ? (
               <div>
                 <Button color="inherit" onClick={this.handleLogout}>
                   Logout

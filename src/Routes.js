@@ -7,7 +7,7 @@ import Portfolio from "./Components/Portfolio";
 import TransactionSummary from "./Components/TransactionSummary";
 
 const Routes = props => {
-  const isLoggedIn = props.user;
+  // const isLoggedIn = props.user;
   return (
     <div>
       <Switch>
@@ -16,14 +16,15 @@ const Routes = props => {
         <Route exact path="/login" component={Login} />
         <Route exact path="/signup" component={Signup} />
         {/* Fallback to home page */}
-        <Route path="/" component={Homepage} />
+
         {/* Routes that only logged in users can access */}
-        {isLoggedIn && (
-          <Switch>
-            <Route path="/portfolio" component={Portfolio} />
-            <Route path="/transactions" component={TransactionSummary} />
-          </Switch>
-        )}
+        {/* {isLoggedIn && ( */}
+        {/* <Switch> */}
+        <Route exact path="/portfolio" component={Portfolio} />
+        <Route path="/transactions" component={TransactionSummary} />
+        {/* </Switch> */}
+        {/* )} */}
+        <Route path="/" component={Homepage} />
       </Switch>
     </div>
   );
